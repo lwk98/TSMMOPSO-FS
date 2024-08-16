@@ -33,11 +33,11 @@ function [retained_features, retained_features_index, retained_feature_scores] =
     % 根据特征数量调整保留特征的阈值百分位
     original_feature_count = size(features, 2);
     if original_feature_count <= 100
-        percentile_value = 40;  % 如果特征数量较少，保留更多的特征
+        percentile_value = 40;  
     elseif original_feature_count > 100 && original_feature_count <= 500
-        percentile_value = 60;  % 如果特征数量适中，适度保留特征
+        percentile_value = 60;  
     else
-        percentile_value = 95;  % 如果特征数量很多，保留较少的特征
+        percentile_value = 85;  
     end
     threshold = prctile(overall_scores, percentile_value);
 
