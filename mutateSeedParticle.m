@@ -5,14 +5,12 @@ function mutated_particle = mutateSeedParticle(seed_particle, mutation_prob, fea
     % fitness_function: 计算粒子适应度的函数句柄
     n_obj=2;
     mutated_particle = seed_particle; % 初始化突变粒子
-    % 第一步：删除低重要性特征
     for i = 1:n_var
         if seed_particle(i) > 0 && rand() < mutation_prob * (1 - feature_importance(i))
             mutated_particle(i) = 0.5*rand(); % 删除特征（设置为0）
         end
     end
 
-    % 第二步：添加高重要性特征
     for i = 1:n_var
         if seed_particle(i) == 0 && rand() < mutation_prob * feature_importance(i)
             mutated_particle(i) = 0.5+0.5*rand(); % 选中特征，赋予随机值
