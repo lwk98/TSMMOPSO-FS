@@ -24,7 +24,7 @@ PBA=mat2cell(particle,row_of_cell,col_of_cell);% 把粒子的每行拆开，当�
 
 
 for i=1:Maxgeneration
- niche_size = ceil(i / 10); % 使用除法和向上取整函数计算小生境大小
+ niche_size = ceil(i / 10); 
 nbest = cell(ceil(Particle_Number / niche_size), 1); % 初始化空的cell数组
 nbestindex=cell(ceil(Particle_Number / niche_size), 1);
 is_assigned = false(1, Particle_Number); % 标记粒子是否已分配
