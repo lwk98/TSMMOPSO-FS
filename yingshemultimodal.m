@@ -1,11 +1,5 @@
 clc
 clear
-root_path = 'C:\Users\ll\Desktop\程序代码\multimodal个人实验代码\';  
-addpath('C:\Users\ll\Desktop\程序代码\multimodal个人实验代码\utils');
-addpath('C:\Users\ll\Desktop\程序代码\multimodal个人实验代码\result2');
-addpath 'C:\Users\ll\Desktop\程序代码\minepy-master\minepy-master\matlab'
-addpath('C:\Users\ll\Desktop\程序代码\multimodal个人实验代码\zhongwen');
-addpath('C:\Users\ll\Desktop\程序代码\multimodal个人实验代码\zhongwenmain');
 % 数据集名称
 DataSets = {'wdbc', 'sonar', 'musk1', 'LSVT_voice_rehabilitation', 'colon', 'SRBCT', 'lung', 'lymphoma', 'ORL', 'lung_discrete'};
 
@@ -28,8 +22,8 @@ for d = 1:length(DataSets)
     [retained_features, retained_features_index, retain_feature_scores] = select_features_using_mic(X, Y);
     
     % 获取所有符合条件的文件（分别获取7-22和7-23日期的文件）
-    filePattern1 = ['zhongwen_multimodal', DataSet, '_2024-07-22_*.txt'];
-    filePattern2 = ['zhongwen_multimodal', DataSet, '_2024-07-23_*.txt'];
+    filePattern1 = ['TSMMOPSO-FI_multimodal', DataSet, '_2024-07-22_*.txt'];
+    filePattern2 = ['TSMMOPSO-FI_multimodal', DataSet, '_2024-07-23_*.txt'];
     files1 = dir(filePattern1);
     files2 = dir(filePattern2);
     
