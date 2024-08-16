@@ -149,7 +149,7 @@ for algo_idx = 1:length(Algorithms)
         writematrix(traincost',traincost_testcost_output,'WriteMode','append');
         writematrix(testcost',traincost_testcost_output,'Sheet',2,'WriteMode','append');
         trainpf = cat(1,pf);
-        train_hv = Hypervolume_calculation(trainpf, [1,1]);%hv计算    选择最差点，就是满的错误率和特征率都是1，hv越大越好
+        train_hv = Hypervolume_calculation(trainpf, [1,1]);%HV计算
         test_hv = Hypervolume_calculation(testcost,[1,1]);
         result_members(i).train_acc = 1-train_error;
         result_members(i).test_acc =  1-test_error;
