@@ -11,10 +11,10 @@ warning off
 DataSets = {'wdbc','sonar', 'musk1', 'LSVT_voice_rehabilitation', 'colon', 'SRBCT', 'lung', 'lymphoma','ORL','Lung_discrete'};  % 可以添加更多数据集 'wdbc', 'sonar', 'musk1', 'LSVT_voice_rehabilitation', 'colon', 'SRBCT', 'lung', 'lymphoma'
 
 % 算法名称列表
-Algorithms = {'zhongwen'};  % 可以添加更多算法 {'Two-StageMOPSO', 'MMO_DE_CSCD', 'MO_Ring_PSO_SCD_FS', 'DN_NSGAII', 'OmniOptimizer', 'SSMOPSO_FS'}
+Algorithms = {'TSMMOPSO-FI'};  %  {'MMO_DE_CSCD', 'MO_Ring_PSO_SCD_FS', 'DN_NSGAII', 'OmniOptimizer', 'SSMOPSO_FS'}
 
 % 突变概率
-mutation_prob = 0.5;  % 设置突变概率
+mutation_prob = 0.8;  % 设置突变概率
 
 % 循环遍历所有算法
 for algo_idx = 1:length(Algorithms)
@@ -71,7 +71,7 @@ for algo_idx = 1:length(Algorithms)
      original_feature_count = size(X, 2);
      % 执行特征选择
 % 更新特征集
-    if strcmp(Algorithm, 'zhongwen')
+    if strcmp(Algorithm, 'TSMMOPSO-FI')
         [retained_features, retained_features_index,retain_feature_scores] = select_features_using_mic(X, Y);
         % 更新特征集
         X = retained_features;
@@ -102,25 +102,25 @@ for algo_idx = 1:length(Algorithms)
           [oldps,oldpf] = Omni_Opt(X_train, Y_train,xl,xu,n_obj,n_var,n_pop,threshold,Maxgeneration);
           end_time = clock;
         elseif strcmp(Algorithm, 'DN_NSGAII')
-          start_time = clock; %一折的时间
+          start_time = clock; 
           [oldps,oldpf] = DN_NSGAII(X_train, Y_train,xl,xu,n_obj,n_pop,threshold,Maxgeneration);
-          end_time = clock; %一折的时间
-        elseif strcmp(Algorithm, 'zhongwen')
-          start_time = clock; %一折的时间
+          end_time = clock; 
+        elseif strcmp(Algorithm, 'TSMMOPSO-FI')
+          start_time = clock; 
           [oldps,oldpf] = MIC_LocalMOPSO1(X_train, Y_train,n_obj,n_var,n_pop,threshold,Maxgeneration,retain_feature_scores,original_feature_count,mutation_prob);
-          end_time = clock; %一折的时间
+          end_time = clock; 
         elseif strcmp(Algorithm, 'SSMOPSO_FS')
-          start_time = clock; %一折的时间
+          start_time = clock; 
           [oldps,oldpf] = SSMOPSO(X_train, Y_train,xl,xu,n_obj,n_pop,threshold);
-          end_time = clock; %一折的时间
+          end_time = clock; 
         elseif strcmp(Algorithm, 'MO_Ring_PSO_SCD_FS')
-          start_time = clock; %一折的时间
+          start_time = clock; 
           [oldps,oldpf] =MO_Ring_PSO_SCD(X_train, Y_train,xl,xu,n_obj,n_pop,threshold);
-          end_time = clock; %一折的时间
+          end_time = clock;
         elseif strcmp(Algorithm,'MMO_DE_CSCD')
-          start_time = clock; %一折的时间
+          start_time = clock; 
           [oldps,oldpf] =MMO_DE_CSCD(X_train, Y_train,xl,xu,n_obj,n_pop,Maxgeneration,threshold);
-          end_time = clock; %一折的时间
+          end_time = clock; 
         elseif strcmp(Algorithm,'PSNSGA')
           start_time=clock;
           [oldps,oldpf]=nsga(X_train, Y_train,n_var,n_pop,Maxgeneration);
