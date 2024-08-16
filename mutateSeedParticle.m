@@ -2,7 +2,6 @@ function mutated_particle = mutateSeedParticle(seed_particle, mutation_prob, fea
     % seed_particle: 当前的种子粒子
     % mutation_prob: 突变概率
     % feature_importance: 特征的重要性数组
-    % fitness_function: 计算粒子适应度的函数句柄
     n_obj=2;
     mutated_particle = seed_particle; % 初始化突变粒子
     for i = 1:n_var
